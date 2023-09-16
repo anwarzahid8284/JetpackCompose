@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JetPackCompose</string>
+    <string name="profile">View Profile</string>
+    <string name="dummy_text">Hello this is anwar zahid android developer of three  years market experience builtin multiple projects</string>
 </resources>
