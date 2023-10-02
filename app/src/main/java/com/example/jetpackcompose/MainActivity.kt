@@ -1,6 +1,7 @@
 package com.example.jetpackcompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -16,9 +17,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -30,10 +35,14 @@ import androidx.compose.ui.unit.dp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            setContent { DesignPreview() }
+        setContent {
+            DesignPreview()
+        }
     }
 }
+
 data class User(var name: String, var age: Int)
+
 val list = listOf(
     User("B", 2),
     User("A", 1),
@@ -48,10 +57,11 @@ val list = listOf(
     User("I", 8),
     User("I", 8)
 )
+
 @Composable
 fun RecyclerView() {
     LazyColumn() {
-        items(list) { user->
+        items(list) { user ->
             UserCard()
         }
     }
@@ -96,6 +106,20 @@ fun UserCard() {
 @Composable
 fun DesignPreview() {
     Surface(Modifier.fillMaxSize()) {
-        RecyclerView()
+        //RecyclerView()
+        InputTextField()
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun InputTextField() {
+    val state= remember { mutableStateOf("Hello") }
+    TextField(
+        value = state.value,
+        onValueChange = {
+            state.value=it
+            Log.e("TAG", "InputTextField: $it", )
+        },
+        label = { Text(text = "Enter Message") })
 }
