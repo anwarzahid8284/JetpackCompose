@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -107,19 +109,34 @@ fun UserCard() {
 fun DesignPreview() {
     Surface(Modifier.fillMaxSize()) {
         //RecyclerView()
+        CircularImageView()
         InputTextField()
+
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputTextField() {
-    val state= remember { mutableStateOf("Hello") }
+    val state = remember { mutableStateOf("Hello") }
     TextField(
         value = state.value,
         onValueChange = {
-            state.value=it
-            Log.e("TAG", "InputTextField: $it", )
+            Log.e("TAG", "InputTextField: $it")
         },
         label = { Text(text = "Enter Message") })
+}
+
+@Composable
+fun CircularImageView() {
+    Image(
+        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(20.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.DarkGray, CircleShape),
+        contentDescription = "",
+
+    )
 }
