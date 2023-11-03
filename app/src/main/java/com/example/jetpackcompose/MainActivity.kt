@@ -33,12 +33,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.jetpackcompose.screen.QuoteListItem
+import com.example.jetpackcompose.screen.QuotesDetails
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DesignPreview()
+            QuoteListItem()
+           // QuotesDetails()
+           // DesignPreview()
         }
     }
 }
@@ -108,9 +112,9 @@ fun UserCard() {
 @Composable
 fun DesignPreview() {
     Surface(Modifier.fillMaxSize()) {
-        //RecyclerView()
-        CircularImageView()
-        InputTextField()
+        RecyclerView()
+        /*CircularImageView()
+        InputTextField()*/
 
     }
 }
